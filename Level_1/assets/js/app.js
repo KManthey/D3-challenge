@@ -83,6 +83,13 @@ var height = svgHeight - margin.top - margin.bottom;
         .attr("fill", "blue")
         .attr("opacity", ".5");
         
+        // var circleLabel = chartGroup.selectAll("label")
+        // .data(healthData)
+        // .enter()
+        // .append("label")
+        // .attr(mode, text, "tx")
+
+        
         // var stateCircle = stateCircle()
         // .mode('marker+text')
         // .type('scatter'.anchor)
