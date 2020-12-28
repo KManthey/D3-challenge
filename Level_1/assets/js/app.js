@@ -49,13 +49,8 @@ var height = svgHeight - margin.top - margin.bottom;
     
         // Step 2: Create scale functions
         // ==============================
-        var xLinearScale = d3.scaleLinear()
-          .domain([0, d3.max(healthData, d => d.poverty)])
-          .range([0, width]);
-    
-        var yLinearScale = d3.scaleLinear()
-          .domain([0, d3.max(healthData, d => d.healthcare)])
-          .range([height, 0]);
+        var xLinearScale = d3.scaleLinear().domain([8, d3.max(healthData, d => d.poverty)]).range([0, width]);
+        var yLinearScale = d3.scaleLinear().domain([0, d3.max(healthData, d => d.healthcare)]).range([height, 0]);
     
         // Step 3: Create axis functions
         // ==============================
@@ -71,23 +66,43 @@ var height = svgHeight - margin.top - margin.bottom;
         chartGroup.append("g")
           .call(leftAxis);
     
+        // Create axes labels
+        // x axes 1
+        chartGroup.append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 0 - margin.left + 40)
+          .attr("x", 0 - (height / 2))
+          .attr("dy", "1em")
+          .attr("class", "aText")
+          .text("Lacks Healthcare (%)");
+          // x axis 2
+          chartGroup.append("text")
+          .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
+          .attr("class", "aText")
+          .text("In Poverty (%)");
+
         // Step 5: Create Circles
         // ==============================
-        var circlesGroup = chartGroup.selectAll("circle")
+        let circlesGroup = chartGroup.selectAll("circle")
         .data(healthData)
         .enter()
         .append("circle")
         .attr("cx", d => xLinearScale(d.poverty))
         .attr("cy", d => yLinearScale(d.healthcare))
-        .attr("r", "15")
+        .attr("r", "17")
         .attr("fill", "blue")
-        .attr("opacity", ".5");
-        
-        // var circleLabel = chartGroup.selectAll("label")
-        // .data(healthData)
-        // .enter()
-        // .append("label")
-        // .attr(mode, text, "tx")
+        .attr("opacity", ".85");
+
+        circlesGroup = chartGroup.selectAll()
+        .data(healthData)
+        .enter()
+        .append("text")
+        .attr("x", d=> xLinearScale(d.poverty))
+        .attr("y",(d,i)=>yLinearScale(d.healthcare))
+        .style("font-size", "15px")
+        .style("text-anchor", "middle")
+        .style("fill", "white")
+        .text(d=>(d.abbr))
 
         
         // var stateCircle = stateCircle()
@@ -121,20 +136,7 @@ var height = svgHeight - margin.top - margin.bottom;
           .on("mouseout", function(data, index) {
             toolTip.hide(data);
           });
-    
-        // Create axes labels
-        chartGroup.append("text")
-          .attr("transform", "rotate(-90)")
-          .attr("y", 0 - margin.left + 40)
-          .attr("x", 0 - (height / 2))
-          .attr("dy", "1em")
-          .attr("class", "axisText")
-          .text("Lacks Healthcare (%)");
-              
-        chartGroup.append("text")
-          .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
-          .attr("class", "axisText")
-          .text("In Poverty (%)");
+  
       }).catch(function(error) {
         console.log(error);
       });
