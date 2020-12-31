@@ -7,8 +7,8 @@
 //use d3.csv function to pull in the data
 //***below based on 3/9  compare this to 3/12  PS nothing currently works with this code */
 //***********then see bonus work */
+//NOTE - tooltip function now broken!!
 
-// @TODO: YOUR CODE HERE!
 // Load data from .csv
 var svgWidth = 960;
 var svgHeight = 500;
@@ -32,9 +32,7 @@ var height = svgHeight - margin.top - margin.bottom;
     var chartGroup = svg.append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-
-      
-    
+  
     // Import Data
     d3.csv("data.csv").then(function(healthData) {
          // d3.csv("./data.csv").then(function(Data) {
@@ -104,15 +102,7 @@ var height = svgHeight - margin.top - margin.bottom;
         .style("fill", "white")
         .text(d=>(d.abbr))
 
-        
-        // var stateCircle = stateCircle()
-        // .mode('marker+text')
-        // .type('scatter'.anchor)
-        // .text(d => (d.abbr))
-        // .marker(size=12);
-        
-        // chartGroup.selectAll("circle").append("text")
-        // .text("tx").style('font-size', 10);
+         
         // Step 6: Initialize tool tip
         // ==============================
         var toolTip = d3.tip()
@@ -133,7 +123,7 @@ var height = svgHeight - margin.top - margin.bottom;
           toolTip.show(data, this);
         })
           // onmouseout event
-          .on("mouseout", function(data, index) {
+          .on("mouseout", function(data) {
             toolTip.hide(data);
           });
   
