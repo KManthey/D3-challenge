@@ -1,14 +1,4 @@
-//use D3 to create a scatter plot of either healthcare vs poverty or smokers vs age
-// (so is this really scatter with circle elements or does that just mean a buble chart?)
-//each circle elements represent each state - include the state abbreviations in the circles (abbr[2])
-//include axes x In Poverty(%) y Lacks Healthcare (%)
-// NOTE will need to use python -m http.server to run the visualization.  This will host the page at localhost:8000 in your web browser
-// is this the same as in integrated server after running conda activate PythonData???
-//use d3.csv function to pull in the data
-//***below based on 3/9  compare this to 3/12  PS nothing currently works with this code */
-//NOTE tooltip and state abbrev not working!!
-
-// Load data from .csv
+// Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
 var svgWidth = 960;
 var svgHeight = 800;
     
@@ -22,7 +12,7 @@ var svgHeight = 800;
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
     
-    // Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
+
     var svg = d3.select("#scatter")
       .append("svg")
       .attr("width", svgWidth)
@@ -94,8 +84,7 @@ function renderyAxes(newYScale, yAxis) {
   return yAxis;
 }
 
-// function used for updating circles group with a transition to
-// new circles
+// function used for updating circles group with a transition to new circles
 function renderCircles(circlesGroup, newXScale, newYScale, chosenXAxis, chosenYAxis) {
 console.log(circlesGroup)
   circlesGroup.transition()
@@ -209,7 +198,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
       // Create group for y-axis labels
       var ylabelsGroup = chartGroup.append("g")  
       // .attr("transform", `translate(${width / 2}, ${height + 20})`);
-//****************see original append y axis */
+
     // first y axis - healthcare
     var healthcareLabel = ylabelsGroup.append("text")
       .attr("transform", "rotate(-90)")  
@@ -241,16 +230,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
       .classed("inactive", true)
       .text("Obese (%)");
 
-     //**********this is the original y axis coding */   
-      // append y axis
-      // chartGroup.append("text")
-      //   .attr("transform", "rotate(-90)")
-      //   .attr("y", 0 - margin.left)
-      //   .attr("x", 0 - (height / 2))
-      //   .attr("dy", "1em")
-      //   .classed("axis-text", true)
-      //   .text("Lacks Healthcare");
-      
+       
       let circlesGroup = chartGroup.selectAll("circle")
         .data(healthData)
         .enter()

@@ -1,14 +1,3 @@
-//use D3 to create a scatter plot of either healthcare vs poverty or smokers vs age
-// (so is this really scatter with circle elements or does that just mean a buble chart?)
-//each circle elements represent each state - include the state abbreviations in the circles (abbr[2])
-//include axes x In Poverty(%) y Lacks Healthcare (%)
-// NOTE will need to use python -m http.server to run the visualization.  This will host the page at localhost:8000 in your web browser
-// is this the same as in integrated server after running conda activate PythonData???
-//use d3.csv function to pull in the data
-//***below based on 3/9  compare this to 3/12  PS nothing currently works with this code */
-//***********then see bonus work */
-//NOTE - tooltip function now broken!!
-
 // Load data from .csv
 var svgWidth = 960;
 var svgHeight = 500;
@@ -131,4 +120,4 @@ var height = svgHeight - margin.top - margin.bottom;
         console.log(error);
       });
 
-      //***do I need to add some code to the html for the charts??
+    
