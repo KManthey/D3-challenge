@@ -138,8 +138,9 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
           .offset([80, -60])
           //distance from the circle
           .html(function(d) {
-            return (`${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}`);
-          });
+            // return (`${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}`);
+            return (`${d.state}<br>X: ${d[chosenXAxis]}<br>Y: ${d[chosenYAxis]}`);
+            });
     circlesGroup.call(toolTip);
     console.log("after line 143")
     circlesGroup.on("mouseover", function(data) {
@@ -281,7 +282,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
         stateLabels.transition().duration(1000)
         .attr("x", d=> xLinearScale(d[chosenXAxis]))
         .attr("y", (d, i)=> yLinearScale(d[chosenYAxis]))
-        return stateLabels();
+        return stateLabels;
       }
 
        // updateToolTip function above csv import
