@@ -128,7 +128,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
           //distance from the circle
           .html(function(d) {
             // return (`${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}`);
-            return (`${d.state}<br>X: ${d[chosenXAxis]}<br>Y: ${d[chosenYAxis]}`);
+            return (`${d.state}<br>${xlabel}: ${d[chosenXAxis]}<br>${ylabel}: ${d[chosenYAxis]}`);
             });
     circlesGroup.call(toolTip);
     console.log("after line 143")
